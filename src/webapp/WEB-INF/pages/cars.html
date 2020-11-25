@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${pageTitle}"></title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/style.css}" />
+</head>
+<body>
+
+<div>
+    <th:block th:each="msg : ${messages}">
+        <h1 th:text="${msg}"></h1>
+    </th:block>
+</div>
+
+<th:block th:if="${carList.size() > 0}">
+<table>
+    <tr>
+        <th>id</th>
+        <th>manufacturer</th>
+        <th>model</th>
+        <th>production year</th>
+    </tr>
+    <th:block th:each="car : ${carList}">
+    <tr>
+        <td th:text="${car.getId()}"></td>
+        <td th:text="${car.getManufacturer()}"></td>
+        <td th:text="${car.getModel()}"></td>
+        <td th:text="${car.getProductionYear()}"></td>
+    </tr>
+    </th:block>
+</table>
+</th:block>
+
+<th:block th:unless="${carList.size() > 0}">
+<div>
+    <h2>no cars in list</h2>
+</div>
+</th:block>
+
+</body>
+</html>
